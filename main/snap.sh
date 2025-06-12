@@ -17,7 +17,7 @@ if [ -n "$2" ]
 then
  path=$2
 else
- path=/mnt/disk1/snapshots
+ path=/mnt/disk2/snapshots
 fi
 #echo $path
 #exit
