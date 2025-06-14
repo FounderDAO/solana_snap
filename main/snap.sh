@@ -21,5 +21,20 @@ else
 fi
 #echo $path
 #exit
-wget --trust-server-names -P "$path" http://$ip/snapshot.tar.bz2
+if [ ! -d "/mnt/disk2/snapshots/" ]; then
+    mkdir -p /mnt/disk2/snapshots/
+fi
+
+cd /mnt/disk2/snapshots/
+wget --trust-server-names -P http://$ip/snapshot.tar.bz2
+
+if [ ! -d "/mnt/ramdisk/incremental_snapshots/" ]; then
+    mkdir -p /mnt/ramdisk/incremental_snapshots/
+fi
+
+cd /mnt/ramdisk/incremental_snapshots/
 wget --trust-server-names -P "$path" http://$ip/incremental-snapshot.tar.bz2
+
+cd /root/solana/
+
+make reload && make start
